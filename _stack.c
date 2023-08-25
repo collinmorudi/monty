@@ -1,11 +1,11 @@
 #include "monty.h"
 
 /**
- * is_numeric - checks if each character is a digit
- * @n: int
- * Return: 0 if is number, -1 if not
+ * is_number - iterates each character of string to check of isdigit
+ * @n: integer
+ * Return: 0 if is number, else -1 if not
  */
-int is_numeric(const char *n)
+int is_number(const char *n)
 {
 	int i = 0;
 
@@ -18,20 +18,19 @@ int is_numeric(const char *n)
 	}
 	return (0);
 }
-
 /**
- * _push - adds node to the start of linkedlist
- * @h: head of linked list
- * @line_num: bytecode line number
- * @n: int
+ * push - adds node to the start of dlinkedlist
+ * @h: head of linked list (node at the bottom of stack)
+ * @line_number: bytecode line number
+ * @n: integer
  */
-void _push(stack_t **h, unsigned int line_num, const char *n)
+void push(stack_t **h, unsigned int line_number, const char *n)
 {
 	if (!h)
 		return;
-	if (is_numeric(n) == -1)
+	if (is_number(n) == -1)
 	{
-		printf("L%u: usage: push integer\n", line_num);
+		printf("L%u: usage: push integer\n", line_number);
 		free_dlist(h);
 		exit(EXIT_FAILURE);
 	}
@@ -44,17 +43,16 @@ void _push(stack_t **h, unsigned int line_num, const char *n)
 		}
 	}
 }
-
 /**
- * _pop - removes node at front of the linkedlist
- * @h: head of linked list
- * @line_num: bytecode line number
+ * pop - removes node at front of dlinkedlist
+ * @h: head of linked list (node at the bottom of stack)
+ * @line_number: bytecode line number
  */
-void _pop(stack_t **h, unsigned int line_num)
+void pop(stack_t **h, unsigned int line_number)
 {
 	if (h == NULL || *h == NULL)
 	{
-		printf("L%u: stack is empty\n", line_num);
+		printf("L%u: can't pop an empty stack\n", line_number);
 		free_dlist(h);
 		exit(EXIT_FAILURE);
 	}

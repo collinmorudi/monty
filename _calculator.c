@@ -1,96 +1,94 @@
 #include "monty.h"
 /**
- * add_num - adds the top two elements in the stack
- * @t: top
- * @line_num: node number
+ * _add - adds the top two elements in stack
+ * @h: top node
+ * @line_number: node number
  */
-void add_num(stack_t **t, unsigned int line_num)
+void _add(stack_t **h, unsigned int line_number)
 {
-	if (*t == NULL || (*t)->next == NULL)
+	if (*h == NULL || (*h)->next == NULL)
 	{
-		printf("L%u: can't perfom addition\n", line_num);
+		printf("L%u: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	(*t)->next->n += (*t)->n;
-	(*t) = (*t)->next;
-	free((*t)->prev);
-	(*t)->prev = NULL;
+	(*h)->next->n += (*h)->n;
+	(*h) = (*h)->next;
+	free((*h)->prev);
+	(*h)->prev = NULL;
 }
 /**
- * sub_num - subtract second node from the top node
- * @t: top
- * @line_num: line of command
+ * _sub - subtract second node from top node
+ * @h: top of list
+ * @line_number: line of command
  */
-void sub_num(stack_t **t, unsigned int line_num)
+void _sub(stack_t **h, unsigned int line_number)
 {
-	if (*t == NULL || (*t)->next == NULL)
+	if (*h == NULL || (*h)->next == NULL)
 	{
-		printf("L%u: can't perform sub\n", line_num);
+		printf("L%u: can't sub, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	(*t)->next->n -= (*t)->n;
-	(*t) = (*t)->next;
-	free((*t)->prev);
-	(*t)->prev = NULL;
+	(*h)->next->n -= (*h)->n;
+	(*h) = (*h)->next;
+	free((*h)->prev);
+	(*h)->prev = NULL;
 }
 /**
- * mul_num - multiply second node and top node
- * @t: top
- * @line_num: line of command
+ * _mul - multiply second node and top node
+ * @h: top of list
+ * @line_number: line of command
  */
-void mul_num(stack_t **t, unsigned int line_num)
+void _mul(stack_t **h, unsigned int line_number)
 {
-	if (*t == NULL || (*t)->next == NULL)
+	if (*h == NULL || (*h)->next == NULL)
 	{
-		printf("L%u: can't perform mul\n", line_num);
+		printf("L%u: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	(*t)->next->n *= (*t)->n;
-	(*t) = (*t)->next;
-	free((*t)->prev);
-	(*t)->prev = NULL;
+	(*h)->next->n *= (*h)->n;
+	(*h) = (*h)->next;
+	free((*h)->prev);
+	(*h)->prev = NULL;
 }
-
 /**
- * div_num - divides second node from top node
- * @t: top
- * @line_num: line of command
+ * _div - divide second node from top node
+ * @h: top of list
+ * @line_number: line of command
  */
-void div_num(stack_t **t, unsigned int line_num)
+void _div(stack_t **h, unsigned int line_number)
 {
-	if (*t == NULL || (*t)->next == NULL)
+	if (*h == NULL || (*h)->next == NULL)
 	{
-		printf("L%u: can't perfom div\n", line_num);
+		printf("L%u: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if ((*t)->n == 0 || (*t)->next->n == 0)
+	if ((*h)->n == 0 || (*h)->next->n == 0)
 	{
-		printf("L%u: division by zero\n", line_num);
+		printf("L%u: division by zero\n", line_number);
 	}
-	(*t)->next->n /= (*t)->n;
-	(*t) = (*t)->next;
-	free((*t)->prev);
-	(*t)->prev = NULL;
+	(*h)->next->n /= (*h)->n;
+	(*h) = (*h)->next;
+	free((*h)->prev);
+	(*h)->prev = NULL;
 }
-
 /**
- * mod_num - mod second node from top node
- * @t: top
- * @line_num: line of command
+ * _mod - mod second node from top node
+ * @h: top of list
+ * @line_number: line of command
  */
-void mod_num(stack_t **t, unsigned int line_num)
+void _mod(stack_t **h, unsigned int line_number)
 {
-	if (t == NULL || *t == NULL)
+	if (h == NULL || *h == NULL)
 	{
-		printf("L%u: can't perform mod\n", line_num);
+		printf("L%u: can't mod, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	if ((*t)->n == 0 || (*t)->next->n == 0)
+	if ((*h)->n == 0 || (*h)->next->n == 0)
 	{
-		printf("L%u: division by zero\n", line_num);
+		printf("L%u: division by zero\n", line_number);
 	}
-	(*t)->next->n %= (*t)->n;
-	(*t) = (*t)->next;
-	free((*t)->prev);
-	(*t)->prev = NULL;
+	(*h)->next->n %= (*h)->n;
+	(*h) = (*h)->next;
+	free((*h)->prev);
+	(*h)->prev = NULL;
 }

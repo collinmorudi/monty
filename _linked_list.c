@@ -1,18 +1,18 @@
 #include "monty.h"
-
 /**
- * add_node_end - add node at the end of linked list
- * @h: head
- * @n: node
- * Return: 0 if success, else -1 if
+ * add_end_node - add node to front of doubly linked list
+ * @h: pointer to head of list
+ * @n: node data
+ * Return: 0 if success, -1 if failed
  */
-int add_node_end(stack_t **h, int n)
+int add_end_node(stack_t **h, int n)
 {
 	stack_t *new;
 
 	if (!h)
 		return (-1);
 
+	/* malloc and set new node data */
 	new = malloc(sizeof(struct stack_s));
 	if (!new)
 	{
@@ -21,13 +21,14 @@ int add_node_end(stack_t **h, int n)
 	}
 	new->n = n;
 
+	/* account for empty linked list */
 	if (*h == NULL)
 	{
 		*h = new;
 		new->next = NULL;
 		new->prev = NULL;
 	}
-	else
+	else /* insert to front */
 	{
 		new->next = *h;
 		(*h)->prev = new;
@@ -35,35 +36,35 @@ int add_node_end(stack_t **h, int n)
 	}
 	return (0);
 }
-
 /**
- * delete_node_end - deletes node at end of linked list
- * @h: head
+ * delete_end_node - deletes node at end of doubly linked list
+ * @h: pointer to head of doubly linked list
  */
-void delete_node_end(stack_t **h)
+void delete_end_node(stack_t **h)
 {
 	stack_t *del = NULL;
 
+	/* account for only one node in list */
 	del = *h;
 	if ((*h)->next == NULL)
 	{
 		*h = NULL;
 		free(del);
 	}
-	else
+	else /* else delete front, and link correctly */
 	{
 		*h = (*h)->next;
 		(*h)->prev = NULL;
 		free(del);
 	}
 }
-
 /**
- * free_list - frees a linked list
- * @h: head
+ * free_dlist - frees a doubly linked list with only int data, no strings
+ * @h: pointer to head of list
  */
-void free_list(stack_t **h)
+void free_dlist(stack_t **h)
 {
+	/* return if empty list */
 	if (!h)
 		return;
 

@@ -1,27 +1,27 @@
 #include "monty.h"
 
 /**
- * get_op_func - selects the correct function
- * @token1: 1st bytecode
- * Return: pointer to correct function
+ * get_op_func - function to select correct operation function
+ * @token1: 1st bytecode input (opcode)
+ * Return: pointer to correct operation function
  */
-void (*get_op_func(char *token1))(stack_t **stack, unsigned int line_num)
+void (*get_op_func(char *token1))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t instruction_s[] = {
-		{"_pop", _pop},
-		{"print_all", print_all},
-		{"print_top", print_top},
-		{"swap_nodes", swap_nodes},
-		{"add_num", add_num},
-		{"sub_num", sub_num},
-		{"mul_num", mul_num},
-		{"div_num", div_num},
-		{"mod_num", mod_num},
-		{"print_char", print_char},
-		{"print_str", print_str},
-		{"nothing", nothing},
-		{"rotate2", rotate2},
-		{"rotate1", rotate1},
+		{"pop", pop},
+		{"pall", pall},
+		{"pint", pint},
+		{"swap", swap},
+		{"add", _add},
+		{"sub", _sub},
+		{"mul", _mul},
+		{"div", _div},
+		{"mod", _mod},
+		{"pchar", pchar},
+		{"pstr", pstr},
+		{"nop", nop},
+		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}
 	};
 	int i = 0;

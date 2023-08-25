@@ -1,6 +1,5 @@
 #ifndef _MONTY_H_
 #define _MONTY_H_
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -43,28 +42,28 @@ typedef struct instruction_s
 } instruction_t;
 
 /* opcodes related prototypes */
-void (*get_op_func(char *token1))(stack_t **stack, unsigned int line_num);
-void _push(stack_t **h, unsigned int line_num, const char *n);
-void _pop(stack_t **h, unsigned int line_num);
-void print_top(stack_t **t, unsigned int line_num);
-void print_all(stack_t **t, unsigned int line_num);
-void swap_nodes(stack_t **h, unsigned int line_num);
-void nothing(stack_t **t, unsigned int line_num);
-void print_char(stack_t **t, unsigned int line_num);
-void print_str(stack_t **t, unsigned int line_num);
-void rotate2(stack_t **h, unsigned int line_num);
-void rotate1(stack_t **h, unsigned int line_num);
+void (*get_op_func(char *token1))(stack_t **stack, unsigned int line_number);
+void push(stack_t **h, unsigned int line_number, const char *n);
+void pop(stack_t **h, unsigned int line_number);
+void pint(stack_t **h, unsigned int line_number);
+void pall(stack_t **h, unsigned int line_number);
+void swap(stack_t **h, unsigned int line_number);
+void nop(stack_t **h, unsigned int line_number);
+void pchar(stack_t **h, unsigned int line_number);
+void pstr(stack_t **h, unsigned int line_number);
+void rotl(stack_t **h, unsigned int line_number);
+void rotr(stack_t **h, unsigned int line_number);
 
 /* calculator prototypes */
-void add_num(stack_t **t, unsigned int line_num);
-void sub_num(stack_t **t, unsigned int line_num);
-void mul_num(stack_t **t, unsigned int line_num);
-void div_num(stack_t **t, unsigned int line_num);
-void mod_num(stack_t **t, unsigned int line_num);
+void _add(stack_t **h, unsigned int line_number);
+void _sub(stack_t **h, unsigned int line_number);
+void _mul(stack_t **h, unsigned int line_number);
+void _div(stack_t **h, unsigned int line_number);
+void _mod(stack_t **h, unsigned int line_number);
 
 /* doubly linked list related prototypes */
-int add_node_end(stack_t **h, int n);
-void delete_node_end(stack_t **h);
-void free_list(stack_t **h);
+int add_end_node(stack_t **h, int n);
+void delete_end_node(stack_t **h);
+void free_dlist(stack_t **h);
 
 #endif
